@@ -14,7 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.util.Duration;
-public class MaFenetrePrincipale extends Application {
+public class MaFenetrePrincipaleVue extends Application {
 
     @Override
     public void start(Stage primaryStage) {
@@ -66,17 +66,6 @@ public class MaFenetrePrincipale extends Application {
         Button button = new Button("Connexion");
         button.setPrefWidth(textField.getPrefWidth());
         button.setPrefHeight(50);
-// Définir le style initial du bouton
-        String initialBgColor = "#1a1a1a";
-        String initialTextColor = "#FFFFFF";
-        button.setStyle("-fx-background-color: " + initialBgColor + "; " +
-                "-fx-text-fill: " + initialTextColor + "; " +
-                "-fx-border-color: #ffffff; " +
-                "-fx-border-width: 3px; " +
-                "-fx-border-radius: 5px; " +
-                "-fx-font-size: 20px; " +
-                "-fx-effect: dropshadow(three-pass-box, rgb(255,255,255), 10, 0, 0, 0);");
-
         // Créer une Timeline pour l'animation
         Timeline timeline = new Timeline();
 
