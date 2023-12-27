@@ -1,32 +1,20 @@
 package View;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.control.Button;
-import javafx.util.Duration;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.LinearGradient;
-import javafx.scene.paint.Stop;
 import javafx.scene.shape.Line;
-import javafx.application.Platform;
 import javafx.scene.layout.StackPane;
 
-public class ListeCommandesVue extends Application {
+public class ListeCommandesVideVue extends Application {
     @Override
     public void start(Stage primaryStage) {
         // Création d'une mise en page (layout) pour contenir les éléments de la fenêtre
