@@ -17,6 +17,9 @@ import javafx.scene.layout.StackPane;
 public class ListeCommandesVideVue extends Application {
     @Override
     public void start(Stage primaryStage) {
+        //---------------------------------------------------------------\\
+        //                       MISE EN PAGE                            \\
+        //---------------------------------------------------------------\\
         // Création d'une mise en page (layout) pour contenir les éléments de la fenêtre
         Pane root = new Pane();
 
@@ -121,6 +124,9 @@ public class ListeCommandesVideVue extends Application {
         // Ajout d'une marge par rapport au bord du rectangle
         lblListeCommandes.setPadding(new Insets(10, 0, 0, 10));
 
+        //---------------------------------------------------------------\\
+        //              CREATION DU RECTANGLE 1 : "A PREPARER"           \\
+        //---------------------------------------------------------------\\
         // Créer un rectangle avec des coins arrondis en haut de chaque colonne
         Rectangle rect1 = new Rectangle();
         // Définir la largeur et la hauteur du rectangle à 5% de la largeur et de la hauteur de la scène
@@ -159,8 +165,13 @@ public class ListeCommandesVideVue extends Application {
 
         // Choisir la position de départ du StackPane sur l'axe Y légèrement au dessus de la ligne
         spApreparer.layoutYProperty().bind(scene.heightProperty().multiply(0.12).subtract(rect1.heightProperty()));
+        //---------------------------------------------------------------\\
+        //                                                               \\
+        //---------------------------------------------------------------\\
 
-
+        //---------------------------------------------------------------\\
+        //           CREATION DU RECTANGLE 2 : "EN PREPARATION"          \\
+        //---------------------------------------------------------------\\
         // Faire la même chose pour la deuxième colonne
         Rectangle rect2 = new Rectangle();
         rect2.widthProperty().bind(scene.widthProperty().multiply(0.175));
@@ -196,7 +207,13 @@ public class ListeCommandesVideVue extends Application {
 
         // Choisir la position de départ du StackPane sur l'axe Y légèrement au dessus de la ligne
         spEnpreparation.layoutYProperty().bind(scene.heightProperty().multiply(0.12).subtract(rect2.heightProperty()));
+        //---------------------------------------------------------------\\
+        //                                                               \\
+        //---------------------------------------------------------------\\
 
+        //---------------------------------------------------------------\\
+        //               CREATION DU RECTANGLE 3 : "PRÊTE(S)"            \\
+        //---------------------------------------------------------------\\
         // Faire la même chose pour la troisième colonne
         Rectangle rect3 = new Rectangle();
         rect3.widthProperty().bind(scene.widthProperty().multiply(0.175));
@@ -234,6 +251,10 @@ public class ListeCommandesVideVue extends Application {
         spPrete.layoutYProperty().bind(scene.heightProperty().multiply(0.12).subtract(rect3.heightProperty()));
 
         root.getChildren().addAll(line1, line2, lblListeCommandes, spApreparer, spEnpreparation, spPrete);
+        //---------------------------------------------------------------\\
+        //                                                               \\
+        //---------------------------------------------------------------\\
+
         // Afficher la fenêtre
         primaryStage.setScene(scene);
         primaryStage.show();
