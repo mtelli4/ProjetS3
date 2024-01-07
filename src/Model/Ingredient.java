@@ -1,18 +1,17 @@
 package Model;
 
-import java.util.ArrayList;
-
 public class Ingredient {
-    private String nom;
+    private int id_Ing;
+    private String nom_Ing;
     private int quantite_use;
     private Stock STK_ig;
 
-    public String getNom() {
-        return nom;
+    public String getNom_Ing() {
+        return nom_Ing;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setNom_Ing(String nom_Ing) {
+        this.nom_Ing = nom_Ing;
     }
 
     public int getQuantite_use() {
@@ -33,7 +32,7 @@ public class Ingredient {
 
     public Ingredient(int qt,String nm,Stock ig) {
         quantite_use=qt;
-        nom=nm;
+        nom_Ing =nm;
         STK_ig=ig;
 
     }
