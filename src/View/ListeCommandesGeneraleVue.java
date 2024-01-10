@@ -34,13 +34,9 @@ public class ListeCommandesGeneraleVue extends ListeCommandesVideVue {
     // Étape 2 : Récupérer la liste des pizzas commandées
     private List<Pizza> getPizzas() {
         List<Pizza> pizzas = new ArrayList<>();
-        try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://192.70.36.54:3306/saes3-aratovo", "saes3-aratovo", "Projet_rma_s3");
-            CommandeDAO commandeDAO = new CommandeDAO(connection);
-            pizzas = commandeDAO.getPizzasCommandees();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        //Connection connection = DatabaseConnection.getConnection();
+        CommandeDAO commandeDAO = new CommandeDAO();
+        pizzas = commandeDAO.getPizzasCommandees();
         return pizzas;
     }
     @Override
@@ -68,7 +64,7 @@ public class ListeCommandesGeneraleVue extends ListeCommandesVideVue {
 
     public static void main(String[] args) {
         // Créer une instance de Stock
-        Stock stock1 = new Stock(1, 50); // Remplacez 1 et 50 par les valeurs appropriées
+        /*Stock stock1 = new Stock(1, 50); // Remplacez 1 et 50 par les valeurs appropriées
         Stock stock2 = new Stock(2, 50); // Remplacez 2 et 50 par les valeurs appropriées
 
         // Créer quelques ingrédients
@@ -79,12 +75,12 @@ public class ListeCommandesGeneraleVue extends ListeCommandesVideVue {
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         ingredients.add(ingredient1);
         ingredients.add(ingredient2);
-
+*/
         // Créer une nouvelle pizza
-        Pizza pizza = new Pizza(1, "Margherita", 8.5, 15, "Normal", false, ingredients);
+        //Pizza pizza = new Pizza(1, "Margherita", 8.5, 15, "Normal", false, ingredients);
 
         // Afficher le nom de la pizza
-        System.out.println(pizza.getNom());
+        //System.out.println(pizza.getNom());
 
         // Lancer l'application
         Application.launch(args);

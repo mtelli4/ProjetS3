@@ -3,12 +3,13 @@ package Model;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import View.ListeCommandesGeneraleVue;
 
 public class CommandeDAO {
-    private Connection connection;
 
-    public CommandeDAO(Connection connection) {
-        this.connection = connection;
+    Connection connection;
+    public CommandeDAO() {
+        this.connection = DatabaseConnection.getConnection();
     }
 
     public List<Pizza> getPizzasCommandees() {
@@ -22,12 +23,12 @@ public class CommandeDAO {
 
             while (resultSet.next()) {
                 int id = resultSet.getInt("num_Piz");
-                String nom = resultSet.getString("nom");
+                String nom = resultSet.getString("nom_Piz");
                 // Ajoutez ici les autres attributs de la pizza
-                double prix = resultSet.getDouble("prix");
-                int tempsFab = resultSet.getInt("tempsFab");
-                String type = resultSet.getString("type");
-                boolean pret = resultSet.getBoolean("pret");
+                double prix = resultSet.getDouble("prix_Piz");
+                int tempsFab = resultSet.getInt("tempsFabr_Piz");
+                String type = resultSet.getString("type_Piz");
+                boolean pret = resultSet.getBoolean("Pret");
                 ArrayList<Ingredient> ingredients = getIngredientsForPizza(id);
                 Pizza pizza = new Pizza(id, nom, prix, tempsFab, type, pret, ingredients);
                 pizzas.add(pizza);

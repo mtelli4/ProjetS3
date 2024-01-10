@@ -109,21 +109,21 @@ public class MaFenetrePrincipaleVue extends Application {
                             "-fx-font-size: 20px;");
                 });
             } else {
-            // Inverser les couleurs
-            String temp = colors[0];
-            colors[0] = colors[1];
-            colors[1] = temp;
+                // Inverser les couleurs
+                String temp = colors[0];
+                colors[0] = colors[1];
+                colors[1] = temp;
 
-            // Créer des KeyValues pour l'animation
-            KeyValue kv1 = new KeyValue(button.textFillProperty(), Color.web(colors[1]));
-            KeyValue kv2 = new KeyValue(button.backgroundProperty(), new Background(new BackgroundFill(Color.web(colors[0]), CornerRadii.EMPTY, Insets.EMPTY)));
+                // Créer des KeyValues pour l'animation
+                KeyValue kv1 = new KeyValue(button.textFillProperty(), Color.web(colors[1]));
+                KeyValue kv2 = new KeyValue(button.backgroundProperty(), new Background(new BackgroundFill(Color.web(colors[0]), CornerRadii.EMPTY, Insets.EMPTY)));
 
-            // Créer un KeyFrame avec les KeyValues et ajouter à la Timeline
-            KeyFrame kf = new KeyFrame(Duration.millis(150), kv1, kv2);
-            timeline.getKeyFrames().add(kf);
+                // Créer un KeyFrame avec les KeyValues et ajouter à la Timeline
+                KeyFrame kf = new KeyFrame(Duration.millis(150), kv1, kv2);
+                timeline.getKeyFrames().add(kf);
 
-            // Démarrer l'animation
-            timeline.play();
+                // Démarrer l'animation
+                timeline.play();
             }
         });
 
