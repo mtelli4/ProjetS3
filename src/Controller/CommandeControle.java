@@ -8,7 +8,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-
+import javafx.animation.TranslateTransition;
+import javafx.scene.Node;
+import javafx.util.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,5 +47,14 @@ public class CommandeControle {
         gridPane.add(vbox, 0, 0);
 
         return gridPane;
+    }
+
+        public void movePizzaToReady(Node pizzaNode, double destinationX, double destinationY) {
+            TranslateTransition transition = new TranslateTransition();
+            transition.setNode(pizzaNode);
+            transition.setToX(destinationX);
+            transition.setToY(destinationY);
+            transition.setDuration(Duration.seconds(1));
+            transition.play();
     }
 }

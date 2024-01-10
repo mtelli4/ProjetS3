@@ -19,70 +19,60 @@ import java.util.List;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javafx.animation.TranslateTransition;
+import javafx.scene.Node;
+import javafx.util.Duration;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import Controller.CommandeControle;
 
 public class ListeCommandesGeneraleVue extends ListeCommandesVideVue {
-    // Étape 1 : Créer une méthode pour générer un élément de la liste des pizzas
+    private Stage primaryStage; // Ajouter un champ de classe pour le Stage
+    private CommandeControle controle; // Ajouter un champ de classe pour le contrôleur
+
     private Node createPizzaNode(Pizza pizza) {
         Label label = new Label(pizza.getNom());
-        // Vous pouvez personnaliser ce label comme vous le souhaitez,
-        // par exemple en définissant sa police, sa couleur, etc.
-        // label.setFont(...);
-        // label.setTextFill(...);
+        label.setOnMouseClicked(event -> {
+            double destinationX = primaryStage.getScene().getWidth() * 0.55;
+            double destinationY = primaryStage.getScene().getHeight() * 0.14;
+            controle.movePizzaToReady(label, destinationX, destinationY); // Utiliser l'instance du contrôleur pour appeler la méthode
+            pizza.setPret(true);
+        });
         return label;
     }
 
-    // Étape 2 : Récupérer la liste des pizzas commandées
     private List<Pizza> getPizzas() {
         List<Pizza> pizzas = new ArrayList<>();
-        //Connection connection = DatabaseConnection.getConnection();
+        Connection connection = DatabaseConnection.getConnection();
         CommandeDAO commandeDAO = new CommandeDAO();
         pizzas = commandeDAO.getPizzasCommandees();
         return pizzas;
     }
+
     @Override
     public void start(Stage primaryStage) {
+        this.primaryStage = primaryStage; // Stocker le Stage dans le champ de classe
+        this.controle = new CommandeControle(); // Créer une instance du contrôleur
+
         super.start(primaryStage);
 
         Pane root = (Pane) primaryStage.getScene().getRoot();
 
-        // Étape 2 : Récupérer la liste des pizzas commandées
-        List<Pizza> pizzas = getPizzas();  // Remplacez ceci par votre méthode pour obtenir les pizzas
+        List<Pizza> pizzas = getPizzas();
 
-        // Étape 3 : Pour chaque pizza dans la liste, générer un Node
         VBox pizzaList = new VBox();
         for (Pizza pizza : pizzas) {
             Node pizzaNode = createPizzaNode(pizza);
             pizzaList.getChildren().add(pizzaNode);
         }
 
-        // Étape 4 : Ajouter le VBox à la première colonne
-        // Vous devrez ajuster ces propriétés pour positionner correctement le VBox dans votre interface
-        pizzaList.setLayoutX(10);
-        pizzaList.setLayoutY(10);
+        // Lier la position de la liste de pizzas à la taille de la scène
+        pizzaList.layoutXProperty().bind(primaryStage.getScene().widthProperty().multiply(0.05));
+        pizzaList.layoutYProperty().bind(primaryStage.getScene().heightProperty().multiply(0.14));
         root.getChildren().add(pizzaList);
     }
 
     public static void main(String[] args) {
-        // Créer une instance de Stock
-        /*Stock stock1 = new Stock(1, 50); // Remplacez 1 et 50 par les valeurs appropriées
-        Stock stock2 = new Stock(2, 50); // Remplacez 2 et 50 par les valeurs appropriées
-
-        // Créer quelques ingrédients
-        Ingredient ingredient1 = new Ingredient(1, "Tomate", stock1);
-        Ingredient ingredient2 = new Ingredient(2, "Fromage", stock2);
-
-        // Ajouter les ingrédients à une liste
-        ArrayList<Ingredient> ingredients = new ArrayList<>();
-        ingredients.add(ingredient1);
-        ingredients.add(ingredient2);
-*/
-        // Créer une nouvelle pizza
-        //Pizza pizza = new Pizza(1, "Margherita", 8.5, 15, "Normal", false, ingredients);
-
-        // Afficher le nom de la pizza
-        //System.out.println(pizza.getNom());
-
-        // Lancer l'application
         Application.launch(args);
     }
 }
