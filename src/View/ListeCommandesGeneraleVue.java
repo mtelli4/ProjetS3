@@ -25,6 +25,9 @@ import javafx.util.Duration;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import Controller.CommandeControle;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.GridPane;
 
 public class ListeCommandesGeneraleVue extends ListeCommandesVideVue {
     private Stage primaryStage; // Ajouter un champ de classe pour le Stage
@@ -32,6 +35,7 @@ public class ListeCommandesGeneraleVue extends ListeCommandesVideVue {
 
     private Node createPizzaNode(Pizza pizza) {
         Label label = new Label(pizza.getNom());
+        label.setStyle("-fx-text-fill: white;"); // Ajout de cette ligne pour définir la couleur du texte en blanc
         label.setOnMouseClicked(event -> {
             double destinationX = primaryStage.getScene().getWidth() * 0.55;
             double destinationY = primaryStage.getScene().getHeight() * 0.14;
@@ -48,6 +52,7 @@ public class ListeCommandesGeneraleVue extends ListeCommandesVideVue {
         pizzas = commandeDAO.getPizzasCommandees();
         return pizzas;
     }
+
 
     @Override
     public void start(Stage primaryStage) {
@@ -66,6 +71,25 @@ public class ListeCommandesGeneraleVue extends ListeCommandesVideVue {
             pizzaList.getChildren().add(pizzaNode);
         }
 
+
+
+// ...
+
+        FlowPane pizzaFlow = new FlowPane();
+
+        pizzaFlow.setVgap(10); // Espacement vertical entre les pizzas
+        pizzaFlow.setHgap(10); // Espacement horizontal entre les pizzas
+        pizzaFlow.prefHeightProperty().bind(primaryStage.getScene().heightProperty().multiply(0.9));
+        for (Pizza pizza : pizzas) {
+            Node pizzaNode = createPizzaNode(pizza);
+            pizzaFlow.getChildren().add(pizzaNode);
+        }
+
+// Lier la position du FlowPane à la taille de la scène
+        pizzaFlow.layoutXProperty().bind(primaryStage.getScene().widthProperty().multiply(0.05));
+        pizzaFlow.layoutYProperty().bind(primaryStage.getScene().heightProperty().multiply(0.14));
+
+        root.getChildren().add(pizzaFlow);
         // Lier la position de la liste de pizzas à la taille de la scène
         pizzaList.layoutXProperty().bind(primaryStage.getScene().widthProperty().multiply(0.05));
         pizzaList.layoutYProperty().bind(primaryStage.getScene().heightProperty().multiply(0.14));

@@ -49,12 +49,12 @@ public class CommandeControle {
         return gridPane;
     }
 
-        public void movePizzaToReady(Node pizzaNode, double destinationX, double destinationY) {
-            TranslateTransition transition = new TranslateTransition();
-            transition.setNode(pizzaNode);
-            transition.setToX(destinationX);
-            transition.setToY(destinationY);
-            transition.setDuration(Duration.seconds(1));
-            transition.play();
+    public void movePizzaToReady(Node pizzaNode, double destinationX, double destinationY) {
+        TranslateTransition transition = new TranslateTransition();
+        transition.setNode(pizzaNode);
+        transition.setToX(destinationX);
+        transition.setToY(destinationY);
+        transition.setDuration(Duration.seconds(1));
+        transition.play();
     }
 }
