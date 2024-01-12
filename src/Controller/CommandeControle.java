@@ -19,12 +19,23 @@ import Model.Pizza;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-
+import Model.*;
 public class CommandeControle {
     public void setMoveButtonAction(Button moveButton, Pizza pizza, Label label, Stage primaryStage) {
         moveButton.setOnAction(event -> {
             pizza.setPret(true);
             movePizzaToReady(label, primaryStage.getScene().getWidth() * 0.55, primaryStage.getScene().getHeight() * 0.14);
+
+            CommandeDAO commandeDAO = new CommandeDAO();
+
+            // Mettre à jour le stock pour chaque ingrédient de la pizza
+            for (Ingredient ingredient : pizza.getIngredients()) {
+                int neededQuantity = commandeDAO.getNeededQuantity(pizza.getId(), ingredient.getId_Ing());
+                int currentQuantity = commandeDAO.getCurrentQuantity(ingredient.getId_Ing());
+                int newQuantity = currentQuantity - neededQuantity;
+                commandeDAO.updateStock(ingredient.getId_Ing(), newQuantity);
+                commandeDAO.close();
+            }
         });
     }
 

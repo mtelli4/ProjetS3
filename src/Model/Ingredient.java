@@ -6,6 +6,9 @@ public class Ingredient {
     private int quantite_use;
     private Stock STK_ig;
 
+    public int getId_Ing() {
+        return id_Ing;
+    }
     public String getNom_Ing() {
         return nom_Ing;
     }

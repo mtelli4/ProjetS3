@@ -55,6 +55,10 @@ public class ListeCommandesGeneraleVue extends ListeCommandesVideVue {
                     "-fx-font-weight: bold;");
             newButton.prefWidthProperty().bind(primaryStage.getScene().widthProperty().multiply(0.20));
             newButton.prefHeightProperty().bind(primaryStage.getScene().heightProperty().multiply(0.10));
+            Label pizzaLabel = new Label(pizza.getNom());
+            pizzaLabel.setStyle("-fx-text-fill: transparent;");
+            CommandeControle controle = new CommandeControle();
+            controle.setMoveButtonAction(moveButton, pizza, pizzaLabel, primaryStage);
 
             Button readyPizzaButton = readyPizzas.get(pizza.getNom());
             if (readyPizzaButton == null) {
@@ -99,7 +103,9 @@ public class ListeCommandesGeneraleVue extends ListeCommandesVideVue {
         Connection connection = DatabaseConnection.getConnection();
         CommandeDAO commandeDAO = new CommandeDAO();
         pizzas = commandeDAO.getPizzasCommandees();
+        commandeDAO.close();
         return pizzas;
+
     }
 
     @Override
@@ -246,6 +252,7 @@ public class ListeCommandesGeneraleVue extends ListeCommandesVideVue {
 
         root.getChildren().add(pizzaGrid);
     }
+
     public static void main(String[] args) {
         Application.launch(args);
     }
