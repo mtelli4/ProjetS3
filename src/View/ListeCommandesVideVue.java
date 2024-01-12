@@ -15,8 +15,18 @@ import javafx.scene.shape.Line;
 import javafx.scene.layout.StackPane;
 
 public class ListeCommandesVideVue extends Application {
+
+    protected StackPane spApreparer; // Déclarez spApreparer comme un champ
+
+    // ...
+
+    public StackPane getSpApreparer() {
+        return spApreparer;
+    }
+
     @Override
     public void start(Stage primaryStage) {
+        primaryStage.setMaximized(true);
         // Création d'une mise en page (layout) pour contenir les éléments de la fenêtre
         Pane root = new Pane();
 
@@ -76,7 +86,8 @@ public class ListeCommandesVideVue extends Application {
         lblAPreparer.setContentDisplay(ContentDisplay.LEFT);
 
         // Créer un StackPane pour le rectangle et le label
-        StackPane spApreparer = new StackPane();
+        spApreparer = new StackPane();
+
 
         // Ajouter le rectangle et le label au StackPane
         spApreparer.getChildren().addAll(rect1, lblAPreparer);

@@ -18,6 +18,7 @@ public class MaFenetrePrincipaleVue extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        primaryStage.setMaximized(true);
         // Création d'une mise en page (layout) pour contenir les éléments de la fenêtre
         Pane root = new Pane();
 
@@ -124,6 +125,14 @@ public class MaFenetrePrincipaleVue extends Application {
 
                 // Démarrer l'animation
                 timeline.play();
+
+                // Rediriger vers la page ListeCommandesGeneraleVue
+                ListeCommandesGeneraleVue listeCommandesGeneraleVue = new ListeCommandesGeneraleVue();
+                try {
+                    listeCommandesGeneraleVue.start(primaryStage);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 

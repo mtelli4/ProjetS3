@@ -67,6 +67,8 @@ public class CommandeDAO {
 
                 int id = resultSet.getInt("id_Ing");
                 String nom = resultSet.getString("nom_Ing");
+                Ingredient ingredient = new Ingredient(id, nom, null); // Vous devez définir le constructeur approprié dans la classe Ingredient
+                ingredients.add(ingredient);
 
                 System.out.println("Ingrédient ajouté à la liste : " + nom);
             }
